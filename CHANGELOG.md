@@ -14,6 +14,7 @@ All six agreed points below are now applied to the TDD.
 - Flows 7.2 to 7.7 updated: IaC removed, intake app added, vendor references added.
 - Access matrix, network, threats, evaluation, failure handling, OTPP mapping and open questions (10 to 16) updated.
 - Section 15 lists v0.2 items not yet validated against vendor documentation.
+- Lucid diagram v2 updated in place to v0.2: intake app and intake API added; ADO moved; zone 6 split into 6a (OTPP sources) and 6b (vendor references); SharePoint designs card and IaC flows removed; card text, step table (page 2) and OTPP swap page (page 3) updated. TDD now links to the diagram.
 
 ## v0.1 - baseline
 
@@ -50,4 +51,4 @@ All six agreed points below are now applied to the TDD.
 ### Next
 
 - Validate the v0.2 additions listed in TDD section 15.
-- Update the Lucid diagram and talk tracks to v0.2.
+- Update the talk tracks to v0.2.

@@ -1,6 +1,6 @@
 # ARB Agent: Technical Design Document
 
-Supplementary document to the solution architecture diagram ("ARB Agent - Solution Architecture and Data Flow (Azure-native) v2" in Lucid).
+Supplementary document to the solution architecture diagram ("ARB Agent - Solution Architecture and Data Flow (Azure-native) v2" in Lucid: https://lucid.app/lucidchart/6c1f981d-05be-45b6-915d-4cc363d82419/edit). The diagram was updated in place to match this version (v0.2) on 5 October 2026.
 
 | Item | Value |
 |---|---|
@@ -9,7 +9,7 @@ Supplementary document to the solution architecture diagram ("ARB Agent - Soluti
 | Date | 5 October 2026 |
 | Author | Amit Kumar, Enterprise Architecture |
 | Related roadmap items | 1.4 Embedding AI in Architecture Practice; 3.1 Agent Reference Architecture |
-| Related documents | Architecture PoV on Agents memo (19 Sep 2026); EA Prioritization deck (Oct 2026); Lucid solution architecture v2 |
+| Related documents | Architecture PoV on Agents memo (19 Sep 2026); EA Prioritization deck (Oct 2026); Lucid solution architecture v2 (updated to TDD v0.2) |
 
 ---
 
@@ -91,7 +91,7 @@ The agent itself is limited to **read and recommend**. All writes happen in the 
 
 ## 4. Architecture overview
 
-The solution has nine zones. The Lucid diagram shows them with numbered data flows.
+The solution has nine zones. The Lucid diagram shows them with numbered data flows; zone 6 is drawn as two containers, 6a (OTPP sources) and 6b (vendor references, advice only).
 
 | Zone | Purpose | Main components |
 |---|---|---|
@@ -408,7 +408,7 @@ The requester sees these statuses in the intake app. Each maps to an ADO work it
 
 ## 7. Flows
 
-The step numbers match the arrows on the Lucid diagram. Human checkpoints are marked H1 to H5. (The Lucid diagram is updated to v0.2 after this document is reviewed.)
+The step numbers match the arrows on the Lucid diagram (page 1) and its step table (page 2). Human checkpoints are marked H1 to H5.
 
 ### 7.1 Knowledge preparation (step 0)
 
