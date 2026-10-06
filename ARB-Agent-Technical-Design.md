@@ -78,7 +78,7 @@ The agent itself is limited to **read and recommend**. All writes happen in the 
 
 ## 4. Architecture overview
 
-The solution has nine zones. The Lucid diagram shows them with numbered data flows; zone 6 is drawn as two containers, 6a (OTPP sources) and 6b (vendor references, advice only).
+The solution has nine zones. The [Lucid diagram](https://lucid.app/lucidchart/6c1f981d-05be-45b6-915d-4cc363d82419/edit) shows them with numbered data flows; zone 6 is drawn as two containers, 6a (OTPP sources) and 6b (vendor references, advice only).
 
 | Zone | Purpose | Main components |
 |---|---|---|

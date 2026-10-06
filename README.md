@@ -9,6 +9,7 @@ The agent reviews architecture submissions against rules packs and sources. It r
 | File | What it is |
 |---|---|
 | `ARB-Agent-Technical-Design.md` | Technical design document (TDD) |
+| [Solution architecture diagram](https://lucid.app/lucidchart/6c1f981d-05be-45b6-915d-4cc363d82419/edit) | Lucid diagram: solution architecture and data flow (Azure-native) |
 
 ## How changes are tracked
 
