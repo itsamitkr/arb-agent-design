@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.2 - six-point review applied
+
+All six agreed points below are now applied to the TDD.
+
+- New section 3.1: input categories (rules packs, OTPP overlay, sources, vendor references, evidence) and which can raise a CRITICAL GAP.
+- Section 5.1 rewritten: intake app, intake API and ADO Boards. New section 6.5: request statuses.
+- Section 5.3: four-layer findings format (schema, structured outputs, gate, code-built report), citation checks, retry then person.
+- Section 5.4: Document Intelligence for older attachments only.
+- New section 5.12: vendor references (vendor docs MCP servers, generic vendor docs MCP server, vendor reference repos).
+- Section 6.1 rewritten: intake form sections and fields; 6.1.2 diagram phasing.
+- Section 6.2: findings JSON adds schemaVersion, evidence_mode and typed refs with versions.
+- Flows 7.2 to 7.7 updated: IaC removed, intake app added, vendor references added.
+- Access matrix, network, threats, evaluation, failure handling, OTPP mapping and open questions (10 to 16) updated.
+- Section 15 lists v0.2 items not yet validated against vendor documentation.
+
 ## v0.1 - baseline
 
 - First version of the technical design document (TDD).
@@ -8,7 +23,7 @@
 
 ## Pending
 
-### Agreed, not yet applied to the TDD
+### Agreed review points (applied in v0.2)
 
 - Point 1: rules packs are external industry standards (NIST, OWASP, CIS, Well-Architected) plus a thin OTPP overlay. Sources are OTPP internal material (approved services and vendors, internal standards, patterns, reference architectures). Evidence is the submitted intake form and blueprint.
 - Point 2: findings follow a fixed format. JSON Schema (`findings.schema.json`), Claude structured outputs, and a code validation gate. The model may fix its own output when the gate rejects it (one or two retries, then a person). The pass/fail check and routing stay in code. The report is built by code from validated data.
@@ -32,6 +47,7 @@
   - Later (target, once architects have adopted it): text source required; components carry technology inventory IDs (for example TECH-03); flows show protocol, encryption and trust boundary; required diagrams by tier (all tiers: system context and target conceptual view; Tier 1 and 2: also physical and security views; others "N/A plus reason"). Structurizr (C4) or draw.io may be added on request.
   - Lucid option depends on OTPP standardizing on Lucid; otherwise Mermaid plus image fallback.
 
-### Under review
+### Next
 
-- None. All six points agreed. Next: apply them to the TDD.
+- Validate the v0.2 additions listed in TDD section 15.
+- Update the Lucid diagram and talk tracks to v0.2.
