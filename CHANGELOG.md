@@ -27,6 +27,11 @@
   - Form content: cover block with routing fields (initiative ID, owner, sponsor, tier, data classification, hosting regions, new technology, declared deviations); technology inventory table (product, vendor, version, hosting type, region, on approved list); "N/A plus reason" instead of "optional"; separate risks table; decisions table with status and "deviates from standard"; numeric RTO, RPO and availability target; IDs on business requirements.
   - Open question: does OTPP already run a request portal (for example ServiceNow or Backstage) that should be used instead of a new app?
 
+- Point 6b: diagrams, phased.
+  - Now: at least one diagram is mandatory. Text source (Mermaid, or Lucid shapes and connections exported as JSON) is the preferred way. Image or PDF is accepted. Findings that rely on an image are marked "read from image".
+  - Later (target, once architects have adopted it): text source required; components carry technology inventory IDs (for example TECH-03); flows show protocol, encryption and trust boundary; required diagrams by tier (all tiers: system context and target conceptual view; Tier 1 and 2: also physical and security views; others "N/A plus reason"). Structurizr (C4) or draw.io may be added on request.
+  - Lucid option depends on OTPP standardizing on Lucid; otherwise Mermaid plus image fallback.
+
 ### Under review
 
-- Point 6b: diagrams as code.
+- None. All six points agreed. Next: apply them to the TDD.
