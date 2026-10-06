@@ -1,18 +1,5 @@
 # ARB Agent: Technical Design Document
 
-Supplementary document to the solution architecture diagram ("ARB Agent - Solution Architecture and Data Flow (Azure-native) v2" in Lucid).
-
-| Item | Value |
-|---|---|
-| Status | Draft for review |
-| Version | 0.2 (changes since 0.1 are listed in `CHANGELOG.md`) |
-| Date | 5 October 2026 |
-| Author | Amit Kumar, Enterprise Architecture |
-| Related roadmap items | 1.4 Embedding AI in Architecture Practice; 3.1 Agent Reference Architecture |
-| Related documents | Architecture PoV on Agents memo (19 Sep 2026); EA Prioritization deck (Oct 2026); Lucid solution architecture v2 |
-
----
-
 ## 1. Purpose and scope
 
 This document explains how the ARB (Architecture Review Board) agent works in enough detail to build, secure and run it.
