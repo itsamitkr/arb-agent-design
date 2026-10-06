@@ -225,7 +225,7 @@ The structured submission removes Document Intelligence from the main path. It i
 - **Content.** OTPP standards, patterns and reference architectures.
 - **Index source.** Blob Storage, not SharePoint or Confluence directly.
 - **Why.** The SharePoint indexer is in preview, has no private endpoint support, and does not support tenants with Entra Conditional Access.
-- **Ingestion.** A scheduled workflow copies the standards library from SharePoint and Confluence to Blob. The Blob indexer (GA) chunks, embeds and indexes it.
+- **Ingestion.** A scheduled Logic Apps workflow copies the standards library to Blob: SharePoint through the Microsoft Graph API, Confluence through the Confluence REST API. The Blob indexer (GA) chunks, embeds and indexes it.
 - **Approved services and vendor lists.** Not searched. These are exact lookups ("is this product approved?"), so the agent reads them as structured data through a tool. Where they are mastered is open question 11.
 - **Vendor docs.** Not indexed at first; read live (section 5.12). If evaluations show the agent missing vendor guidance, index those vendors' pages here on a daily schedule.
 - **Query.** Hybrid search (keyword plus vector) with the semantic ranker.
@@ -628,7 +628,7 @@ sequenceDiagram
     Note over PO,RP: Includes promoting a vendor practice into the OTPP overlay
     RP->>PL: Trigger CI
     PL->>PL: validate-bank on overlay rules
-    PL->>FA: Deploy candidate version (non-production)
+    PL->>FA: Deploy candidate version (azd deploy, non-production)
     PL->>EV: Run golden set (past ARB reviews)
     EV-->>PL: Agreement rate, missed critical gaps, false alarms
     alt Below threshold
@@ -677,7 +677,7 @@ sequenceDiagram
 | Validation gate identity | System-assigned managed identity | Azure Functions |
 | Gateway identity | System-assigned managed identity | API Management, to reach models and Content Safety |
 | Search identity | System-assigned managed identity | AI Search, to read Blob and call the embedding model |
-| Pipeline identity | Workload identity federation | Azure Pipelines deployments |
+| Pipeline identity | Workload identity federation (OIDC) | Azure Pipelines deployments (azd, Bicep or Terraform); the same pattern applies to GitHub Actions |
 
 ### 8.2 Access matrix
 
@@ -855,6 +855,7 @@ Checked against Microsoft Learn on 4 October 2026.
 - Availability and terms of use of vendor documentation MCP servers (AWS, Google Cloud, Snowflake) and a read-only GitHub MCP server behind APIM.
 - Hosting the generic vendor docs MCP server on Azure Functions or Container Apps.
 - Lucid API access to a document's shapes and connections as JSON.
+- A Logic Apps connector for Confluence. None was found on Microsoft Learn, so the design assumes the Confluence REST API through an HTTP action.
 
 ---
 
@@ -876,11 +877,14 @@ Checked against Microsoft Learn on 4 October 2026.
 | Policy as code | App Configuration with policy in Git | Policy engine (to be selected) | Memo s.3, s.8 |
 | Identity | Entra ID and Entra Agent ID | Same (Agent 365 licences) | Memo s.8 |
 | Intake front door | React app on Azure Static Web Apps, intake API on Azure Functions | Existing OTPP request portal if one exists (for example ServiceNow or Backstage); otherwise same | Open question 10 |
-| Intake and record | ADO Boards | GitHub Enterprise Cloud (confirm) | Deck item 2.3 |
+| Intake API and validation gate | Azure Functions | Same | Assumption |
+| Notifications and approvals | Microsoft Teams (or email) | Same | Assumption |
+| System of record | ADO Boards (work item state = request status) | GitHub Enterprise Cloud Issues and Projects (confirm) | Deck item 2.3 |
 | Vendor references | Vendor MCP servers, generic vendor docs MCP server, GitHub MCP, all behind APIM | Same, behind enterprise API Management; TAP tool hosting if available | Memo s.3, s.8 |
 | Diagrams | Mermaid, Lucid JSON, image fallback | Same | Assumption |
-| Code and pipelines | Azure Repos and Azure Pipelines | GitHub Actions and ArgoCD | Deck item 2.3 |
-| Document conversion | AI Document Intelligence | TAP ingestion, or same | Assumption |
+| Code, infrastructure and pipelines | Azure Repos and Azure Pipelines (azd, Bicep or Terraform) | GitHub Enterprise Cloud and GitHub Actions, signing in to Azure with OIDC (azd, Bicep or Terraform). ArgoCD only if workloads move to Kubernetes: it cannot create Foundry, Functions, Logic Apps or APIM resources | Deck item 2.3; Microsoft Learn (hosted agent CI/CD) |
+| Knowledge graph (phase 2) | PostgreSQL with pgvector and Apache AGE | TAP knowledge platform | Assumption |
+| Document conversion | AI Document Intelligence (older attachments only) | TAP ingestion, or same | Assumption |
 | Storage and secrets | Blob Storage and Key Vault | Same | Assumption |
 
 ---
@@ -924,3 +928,6 @@ Checked against Microsoft Learn on 4 October 2026.
 - [Sentinel diagnostic-settings connectors](https://learn.microsoft.com/azure/sentinel/connect-services-diagnostic-setting-based)
 - [Foundry general availability overview (workflows retirement)](https://learn.microsoft.com/azure/foundry/concepts/general-availability#validate-ga-only-usage)
 - [Logic Apps with Foundry agents](https://learn.microsoft.com/azure/logic-apps/automate-foundry-agents-with-workflows)
+- [Set up CI/CD for hosted agents with the Azure Developer CLI](https://learn.microsoft.com/azure/foundry/agents/how-to/set-up-ci-cd-cli)
+- [Hosted agent CI/CD with GitHub Actions](https://learn.microsoft.com/azure/foundry/agents/quickstarts/set-up-cicd-hosted-agent)
+- [Deploy Bicep files with GitHub Actions (OIDC)](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-github-actions)
