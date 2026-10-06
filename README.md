@@ -9,13 +9,11 @@ The agent reviews architecture submissions against rules packs and sources. It r
 | File | What it is |
 |---|---|
 | `ARB-Agent-Technical-Design.md` | Technical design document (TDD) |
-| `CHANGELOG.md` | List of changes, one entry per agreed decision |
 
 ## How changes are tracked
 
 - One commit per agreed decision.
 - Each commit message names the review point it closes.
-- `CHANGELOG.md` gets a short entry for each change.
 
 ## Confidentiality
 
